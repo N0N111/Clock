@@ -1,0 +1,49 @@
+using System;
+using UnityEngine;
+
+public class Clock : MonoBehaviour
+{
+	public Transform hoursTransform;
+	public Transform minutesTransform;
+	public Transform secondsTransform;
+	private const float degreesPerHour = -30f;
+	private const float degreesPerMinute = -6f;
+	private const float degreesPerSecond = -6f;
+
+	public int timeZoneOffset = 0;
+	const float hoursToDegrees = -30f, minutesToDegrees = -6f, secondsToDegrees = -6f;
+
+	[SerializeField]
+	Transform hourPivot, minutePivot, secondPivot;
+
+
+	void Awake()
+	{
+		DateTime time = DateTime.Now;
+		hourPivot.localRotation =
+			Quaternion.Euler(0f, 0f, hoursToDegrees * time.Hour);
+		minutePivot.localRotation =
+			Quaternion.Euler(0f, 0f, minutesToDegrees * time.Minute);
+		secondPivot.localRotation =
+			Quaternion.Euler(0f, 0f, secondsToDegrees * time.Second);
+	}
+	void Update()
+	{
+		TimeSpan time = DateTime.Now.TimeOfDay;
+		hourPivot.localRotation =
+			Quaternion.Euler(0f, 0f, hoursToDegrees * (float)time.TotalHours);
+		minutePivot.localRotation =
+			Quaternion.Euler(0f, 0f, minutesToDegrees * (float)time.TotalMinutes);
+		secondPivot.localRotation =
+			Quaternion.Euler(0f, 0f, secondsToDegrees * (float)time.TotalSeconds);
+		UpdateClock();
+
+	}
+	void UpdateClock()
+	{
+		DateTime time = DateTime.UtcNow.AddHours(timeZoneOffset);
+		hoursTransform.localRotation = Quaternion.Euler(0f,  0f, time.Hour * degreesPerHour);
+		minutesTransform.localRotation = Quaternion.Euler(0f,0f, time.Minute * degreesPerMinute);
+		secondsTransform.localRotation = Quaternion.Euler(0f,0f, time.Second * degreesPerSecond);
+	}
+}
