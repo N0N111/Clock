@@ -1,0 +1,25 @@
+using UnityEngine;
+public class PrefabManager : MonoBehaviour
+{
+    public GameObject prefab;
+
+
+    private GameObject instance1;
+    private GameObject instance2;
+    private GameObject instance3;
+    private GameObject instance4;
+    private GameObject instance5;
+    private GameObject instance6;
+
+
+    void Start()
+    {
+        instance1 = Instantiate(prefab, new Vector3(-10, 0, 0), Quaternion.identity);
+        instance2 = Instantiate(prefab, new Vector3(-20, 0, 0), Quaternion.identity);
+        instance3 = Instantiate(prefab, new Vector3(-30, 0, 0), Quaternion.identity);
+        instance4 = Instantiate(prefab, new Vector3(-10, 20, 0), Quaternion.identity);
+        instance5 = Instantiate(prefab, new Vector3(-20, 20, 0), Quaternion.identity);
+        instance6 = Instantiate(prefab, new Vector3(-30, 20, 0), Quaternion.identity);
+        
+    }
+}
