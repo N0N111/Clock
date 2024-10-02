@@ -1,0 +1,51 @@
+using UnityEngine;
+public class WorldClockManager : MonoBehaviour
+{
+
+    public GameObject clockPrefab;
+
+
+    void Start()
+    {
+        GameObject newYorkClock = Instantiate(clockPrefab, new Vector3(-10, 0, 0), Quaternion.identity);
+        Clock newYorkClockScript = newYorkClock.GetComponent<Clock>();
+        if (newYorkClockScript != null)
+        {
+            newYorkClockScript.timeZoneOffset = -4;
+
+            GameObject sanFranciscoClock = Instantiate(clockPrefab, new Vector3(-20, 0, 0), Quaternion.identity);
+            Clock sanFranciscoClockScript = sanFranciscoClock.GetComponent<Clock>();
+            if (sanFranciscoClockScript != null)
+            {
+                sanFranciscoClockScript.timeZoneOffset = -7;
+            }
+            GameObject TokyoClock = Instantiate(clockPrefab, new Vector3(-30, 0, 0), Quaternion.identity);
+            Clock TokyoClockScript = TokyoClock.GetComponent<Clock>();
+            if (TokyoClockScript != null)
+            {
+                TokyoClockScript.timeZoneOffset = 9;
+            }
+            GameObject BerlinClock = Instantiate(clockPrefab, new Vector3(-10, 20, 0), Quaternion.identity);
+            Clock BerlinClockScript = BerlinClock.GetComponent<Clock>();
+            if (BerlinClockScript != null)
+            {
+                BerlinClockScript.timeZoneOffset =2;
+            }
+
+            GameObject LondonClock = Instantiate(clockPrefab, new Vector3(-20, 20, 0), Quaternion.identity);
+            Clock LondonClockScript = LondonClock.GetComponent<Clock>();
+            if (LondonClockScript != null)
+            {
+                LondonClockScript.timeZoneOffset = 1;
+            }
+
+
+            GameObject ShanghaiClock = Instantiate(clockPrefab, new Vector3(-30, 20, 0), Quaternion.identity);
+            Clock ShanghaiClockScript = ShanghaiClock.GetComponent<Clock>();
+            if (ShanghaiClockScript != null)
+            {
+                ShanghaiClockScript.timeZoneOffset = 8;
+            }
+        }
+    }
+}
